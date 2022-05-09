@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.4.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validations\House\" />
+    <Folder Include="Validations\CreditCard\" />
+    <Folder Include="Validations\Invoice\" />
+    <Folder Include="Validations\User\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InvoicesAPI.DataAccess\InvoicesAPI.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>

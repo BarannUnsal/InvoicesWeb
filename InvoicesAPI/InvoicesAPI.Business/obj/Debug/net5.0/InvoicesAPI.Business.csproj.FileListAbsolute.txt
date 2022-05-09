@@ -1,0 +1,17 @@
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\bin\Debug\net5.0\InvoicesAPI.Business.deps.json
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\bin\Debug\net5.0\InvoicesAPI.Business.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\bin\Debug\net5.0\ref\InvoicesAPI.Business.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\bin\Debug\net5.0\InvoicesAPI.Business.pdb
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\obj\Debug\net5.0\InvoicesAPI.Business.csproj.AssemblyReference.cache
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\obj\Debug\net5.0\InvoicesAPI.Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\obj\Debug\net5.0\InvoicesAPI.Business.AssemblyInfoInputs.cache
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\obj\Debug\net5.0\InvoicesAPI.Business.AssemblyInfo.cs
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\obj\Debug\net5.0\InvoicesAPI.Business.csproj.CoreCompileInputs.cache
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\obj\Debug\net5.0\InvoicesAPI.Business.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\obj\Debug\net5.0\ref\InvoicesAPI.Business.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\obj\Debug\net5.0\InvoicesAPI.Business.pdb
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\bin\Debug\net5.0\InvoicesAPI.DataAccess.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\bin\Debug\net5.0\InvoicesAPI.Entity.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\bin\Debug\net5.0\InvoicesAPI.DataAccess.pdb
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\bin\Debug\net5.0\InvoicesAPI.Entity.pdb
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Business\obj\Debug\net5.0\InvoicesAPI.Business.csproj.CopyComplete
