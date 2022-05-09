@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿
+using InvoicesAPI.Entity.Common;
+using System;
+using System.Collections.Generic;
 
 namespace InvoicesAPI.Entity
 {
@@ -9,9 +12,6 @@ namespace InvoicesAPI.Entity
         public long TcNo { get; set; }
         public string Email { get; set; }
         public bool isHaveCar { get; set; }
-        public string? CarPlate{ get; set; }
-        public ICollection<House> Houses { get; set; }
-        public ICollection<Invoice> Invoices { get; set; }
-        public ICollection<CreditCard> CreditCards { get; set; }
+        public string? CarPlate { get; set; }
     }
 }

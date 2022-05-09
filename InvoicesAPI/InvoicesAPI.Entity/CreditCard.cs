@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InvoicesAPI.Entity.Common;
+using System;
 
 namespace InvoicesAPI.Entity
 {
@@ -11,3 +12,4 @@ namespace InvoicesAPI.Entity
         public DateTime Expiration { get; set; }
     }
 }
+

@@ -591,6 +591,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "InvoicesAPI.Entity": "1.0.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.EntityFrameworkCore": "5.0.16",
           "Microsoft.Extensions.Configuration": "6.0.1",
           "Microsoft.Extensions.Configuration.Json": "6.0.0",

@@ -1,6 +1,6 @@
 ﻿using InvoicesAPI.DataAccess.Abstract.Repository;
 using InvoicesAPI.DataAccess.Context;
-using InvoicesAPI.Entity;
+using InvoicesAPI.Entity.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;

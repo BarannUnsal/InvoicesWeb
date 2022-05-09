@@ -1,4 +1,5 @@
 ﻿using InvoicesAPI.Entity;
+using InvoicesAPI.Entity.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;

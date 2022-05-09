@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "V2n1gcDxMISzdQwequKHSjESKHry1bVKrl1VrGtABqeA0fhdAh2FRDMqNA1HpvTibI5A8FUcWBIUtE/dxRRghg==",
+  "dgSpecHash": "sbyBtpxGSTNfOYoKGKoR8dNUkl3TlfAFHZnXKt5AfRW4a2EXZrwBq9gIxinUkGAnHeoWP5xgGUxw1Vd1lLsxAg==",
   "success": true,
   "projectFilePath": "D:\\USERDATA\\Desktop\\Invoices\\InvoicesAPI\\InvoicesAPI.DataAccess\\InvoicesAPI.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\SIA-OF1\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\SIA-OF1\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.16\\microsoft.entityframeworkcore.5.0.16.nupkg.sha512",
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.16\\microsoft.entityframeworkcore.abstractions.5.0.16.nupkg.sha512",

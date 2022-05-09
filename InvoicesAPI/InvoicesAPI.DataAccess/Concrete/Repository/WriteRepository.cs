@@ -1,6 +1,7 @@
 ﻿using InvoicesAPI.DataAccess.Abstract.Repository;
 using InvoicesAPI.DataAccess.Context;
 using InvoicesAPI.Entity;
+using InvoicesAPI.Entity.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;

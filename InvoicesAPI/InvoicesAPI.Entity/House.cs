@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using InvoicesAPI.Entity.Common;
+using System;
 
 namespace InvoicesAPI.Entity
 {

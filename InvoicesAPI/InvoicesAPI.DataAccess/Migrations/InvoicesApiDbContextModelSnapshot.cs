@@ -46,12 +46,7 @@ namespace InvoicesAPI.DataAccess.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("CreditCards");
                 });
@@ -77,15 +72,10 @@ namespace InvoicesAPI.DataAccess.Migrations
                     b.Property<DateTime>("UpdatedTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("isEmpty")
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Houses");
                 });
@@ -108,21 +98,16 @@ namespace InvoicesAPI.DataAccess.Migrations
                     b.Property<string>("InvoiceType")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedTime")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("boolean");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Invoices");
                 });
@@ -160,36 +145,6 @@ namespace InvoicesAPI.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("InvoicesAPI.Entity.CreditCard", b =>
-                {
-                    b.HasOne("InvoicesAPI.Entity.User", null)
-                        .WithMany("CreditCards")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("InvoicesAPI.Entity.House", b =>
-                {
-                    b.HasOne("InvoicesAPI.Entity.User", null)
-                        .WithMany("Houses")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("InvoicesAPI.Entity.Invoice", b =>
-                {
-                    b.HasOne("InvoicesAPI.Entity.User", null)
-                        .WithMany("Invoices")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("InvoicesAPI.Entity.User", b =>
-                {
-                    b.Navigation("CreditCards");
-
-                    b.Navigation("Houses");
-
-                    b.Navigation("Invoices");
                 });
 #pragma warning restore 612, 618
         }

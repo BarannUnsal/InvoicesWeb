@@ -1,4 +1,5 @@
 ﻿using InvoicesAPI.Entity;
+using InvoicesAPI.Entity.Common;
 using System;
 using System.Linq;
 using System.Linq.Expressions;

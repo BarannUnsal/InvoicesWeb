@@ -15,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ListComponent extends BaseComponent implements OnInit {
   constructor(spinner: NgxSpinnerService, private invoiceService: InvoiceService, private alertifyService: AlertifyService) { super(spinner) }
 
-  displayedColumns: string[] = ['invoiceNumber', 'invoiceType', 'expiration', 'title', 'description', 'createdTime', 'updatedTime'];
+  displayedColumns: string[] = ['invoiceNumber', 'invoiceType', 'expiration', 'title', 'description', 'createdTime', 'updatedTime', 'edit', 'delete'];
   dataSource: MatTableDataSource<ListInvoice> = null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -30,6 +30,7 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.dataSource = new MatTableDataSource<ListInvoice>(allInvoice.invoice);
     this.paginator.length = allInvoice.totalCount;
   }
+  
   async pageChanged() {
     await this.getInvoices();
   }

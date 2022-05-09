@@ -1,5 +1,4 @@
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\bin\Debug\net5.0\InvoicesAPI.Entity.deps.json
-D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\bin\Debug\net5.0\InvoicesAPI.Entity.dll
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\bin\Debug\net5.0\ref\InvoicesAPI.Entity.dll
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\bin\Debug\net5.0\InvoicesAPI.Entity.pdb
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\obj\Debug\net5.0\InvoicesAPI.Entity.csproj.AssemblyReference.cache
@@ -10,3 +9,4 @@ D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\obj\Debug\net5.0\Inv
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\obj\Debug\net5.0\InvoicesAPI.Entity.dll
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\obj\Debug\net5.0\ref\InvoicesAPI.Entity.dll
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\obj\Debug\net5.0\InvoicesAPI.Entity.pdb
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Entity\bin\Debug\net5.0\InvoicesAPI.Entity.dll

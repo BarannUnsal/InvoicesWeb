@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InvoicesAPI.Entity
+namespace InvoicesAPI.Entity.Common
 {
     public class BaseEntity
     {

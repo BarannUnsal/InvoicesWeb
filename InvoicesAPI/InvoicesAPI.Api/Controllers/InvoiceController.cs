@@ -58,7 +58,7 @@ namespace InvoicesAPI.Api.Controllers
                 InvoiceType = model.InvoiceType,
                 Title = model.Title,
                 Description = model.Description,
-                isActive = model.isActive
+                IsActive = model.isActive
             });
             await _writeRepository.SaveAsync();
             return StatusCode((int)HttpStatusCode.Created);
@@ -68,7 +68,7 @@ namespace InvoicesAPI.Api.Controllers
         public async Task<IActionResult> UpdateInvoice(VM_Invoice_Update model)
         {
             Invoice invoice = await _readRepository.GetByIdAsync(model.Id);
-            invoice.isActive = model.isActive;
+            invoice.IsActive = model.isActive;
             invoice.InvoiceNumber = model.InvoiceNumber;
             invoice.InvoiceType = model.InvoiceType;
             invoice.Title = model.Title;

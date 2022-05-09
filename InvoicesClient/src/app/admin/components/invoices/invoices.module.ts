@@ -11,12 +11,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DeleteDirective } from 'src/app/directives/delete.directive';
+import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
     InvoicesComponent,
     CreateComponent,
-    ListComponent
+    ListComponent,
+    DeleteDirective,
+    DeleteDialogComponent
   ],
   imports: [
     CommonModule,

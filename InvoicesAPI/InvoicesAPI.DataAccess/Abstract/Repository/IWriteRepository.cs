@@ -1,4 +1,5 @@
 ﻿using InvoicesAPI.Entity;
+using InvoicesAPI.Entity.Common;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
