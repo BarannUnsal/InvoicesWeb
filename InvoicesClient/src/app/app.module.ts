@@ -7,8 +7,6 @@ import { UiModule } from './ui/ui.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { DeleteDirective } from './directives/delete.directive';
-import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [

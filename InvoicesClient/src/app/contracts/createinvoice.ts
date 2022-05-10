@@ -4,4 +4,5 @@ export class CreateInvoice {
     expiration: string;
     title: string;
     description: string;
+    isActive: boolean = true;
 }

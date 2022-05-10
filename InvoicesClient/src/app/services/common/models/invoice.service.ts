@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
 import { CreateInvoice } from 'src/app/contracts/createinvoice';
-import { ListInvoice } from 'src/app/contracts/ListInvoice';
+import { ListInvoice } from 'src/app/contracts/listinvoice';
 import { HttpClientService } from '../httipclientserivce.service';
 
 @Injectable({

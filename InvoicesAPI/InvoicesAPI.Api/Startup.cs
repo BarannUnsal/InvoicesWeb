@@ -60,6 +60,7 @@ namespace InvoicesAPI.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "InvoicesAPI.Api v1"));
             }
+            app.UseStaticFiles();
             app.UseCors();
 
             app.UseHttpsRedirection();

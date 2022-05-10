@@ -2,7 +2,11 @@
 using InvoicesAPI.DataAccess.Abstract.Repository.InvoicesRepo;
 using InvoicesAPI.DataAccess.RequestParameters;
 using InvoicesAPI.Entity;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -15,14 +19,16 @@ namespace InvoicesAPI.Api.Controllers
     {
         private readonly IInvoicesReadRepository _readRepository;
         private readonly IInvociesWriteRepository _writeRepository;
-        public InvoiceController(IInvoicesReadRepository readRepository, IInvociesWriteRepository writeRepository)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public InvoiceController(IInvoicesReadRepository readRepository, IInvociesWriteRepository writeRepository, IWebHostEnvironment webHostEnvironment)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetInvoice([FromQuery] Pagination pagination)
+        public async Task<IActionResult> Get([FromQuery] Pagination pagination)
         {
             var totalCount = _readRepository.GetAll(false).Count();
             var invoices = _readRepository.GetAll(false).Skip(pagination.Page * pagination.Size).Take(pagination.Size).Select(p => new
@@ -82,6 +88,28 @@ namespace InvoicesAPI.Api.Controllers
         {
             await _writeRepository.RemoveAsync(id);
             await _writeRepository.SaveAsync();
+            return Ok();
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Upload()
+        {
+            //wwwroot/resource/invoices-images
+            string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/invoices-images");
+
+            if (!Directory.Exists(uploadPath))
+                Directory.CreateDirectory(uploadPath);
+            
+            Random r = new();
+
+            foreach(IFormFile file in Request.Form.Files)
+            {
+                string fullPath = Path.Combine(uploadPath, $"{r.Next()}{Path.GetExtension(file.FileName)}");
+
+                using FileStream fileStream = new(fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
+                await file.CopyToAsync(fileStream);
+                await fileStream.FlushAsync();
+            }
             return Ok();
         }
     }

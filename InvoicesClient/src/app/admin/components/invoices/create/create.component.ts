@@ -3,6 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { CreateInvoice } from 'src/app/contracts/createinvoice';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
+import { FileUploadOptions } from 'src/app/services/common/file-upload/file-upload.component';
 import { InvoiceService } from 'src/app/services/common/models/invoice.service';
 
 @Component({
@@ -18,8 +19,15 @@ export class CreateComponent extends BaseComponent implements OnInit {
   }
 
   @Output() createdInvoice: EventEmitter<CreateInvoice> = new EventEmitter();
+  @Output() fileUploadOptions: Partial<FileUploadOptions> = {
+    action: "upload",
+    controller: "invoices",
+    explantion: "Resimleri sürükleyin veya seçin...",
+    isAdminPage: true,
+    accept: ".png, .jpg, .jpeg"
+  };
 
-  create(title: HTMLInputElement, invoiceNumber: HTMLInputElement, invoiceType: HTMLInputElement, expiration: HTMLInputElement, description: HTMLInputElement) {
+  create(title: HTMLInputElement, invoiceNumber: HTMLInputElement, invoiceType: HTMLInputElement, expiration: HTMLInputElement, description: HTMLInputElement, isActive: HTMLInputElement) {
     this.showSpinner(SpinnerType.BitsBall);
     const create_invoice: CreateInvoice = new CreateInvoice();
     create_invoice.description = description.value;
@@ -27,6 +35,7 @@ export class CreateComponent extends BaseComponent implements OnInit {
     create_invoice.title = title.value;
     create_invoice.invoiceType = invoiceType.value;
     create_invoice.invoiceNumber = parseInt(invoiceNumber.value);
+    create_invoice.isActive = isActive.checked;
 
     this.invoiceService.create(create_invoice, () => {
       this.hideSpinner(SpinnerType.BitsBall);
