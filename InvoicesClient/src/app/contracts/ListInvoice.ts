@@ -1,10 +1,9 @@
 export class ListInvoice {
-    id: Number;
+    id: string;
     invoiceNumber: Number;
     invoiceType: string;
     title: string;
     description: string;
-    expiration: string;
     createdTime: Date;
     updatedDate: Date;
 }

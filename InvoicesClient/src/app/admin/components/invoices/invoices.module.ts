@@ -12,24 +12,24 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteDirective } from 'src/app/directives/delete.directive';
-import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
-import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
 import { MatRadioModule } from '@angular/material/radio';
+import { DialogModule } from 'src/app/dialogs/dialog.module';
+import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
 @NgModule({
   declarations: [
     InvoicesComponent,
     CreateComponent,
     ListComponent,
     DeleteDirective,
-    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       { path: "", component: InvoicesComponent }
     ]),
-    MatDatepickerModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatSidenavModule, MatTableModule, MatPaginatorModule, MatRadioModule, 
+    MatDatepickerModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatSidenavModule, MatTableModule, MatPaginatorModule, MatRadioModule,
     FileUploadModule,
+    DialogModule,
   ]
 })
 export class InvoicesModule { }

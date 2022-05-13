@@ -6,6 +6,7 @@ import { SpinnerType } from '../base/base.component';
 import {MatDialog} from '@angular/material/dialog';
 import { DeleteDialogComponent, DeleteState } from '../dialogs/delete-dialog/delete-dialog.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DialogService } from '../services/common/dialog.service';
 
 declare var $: any;
 
@@ -14,7 +15,7 @@ declare var $: any;
 })
 export class DeleteDirective {
 
-  constructor(private elementRef: ElementRef, private _render: Renderer2, private httpClientService: HttpClientService, private spinner: NgxSpinnerService, private dialog: MatDialog, private alertifyService: AlertifyService) { 
+  constructor(private elementRef: ElementRef, private _render: Renderer2, private httpClientService: HttpClientService, private spinner: NgxSpinnerService, private dialog: MatDialog, private alertifyService: AlertifyService, private dialogService: DialogService) { 
     const img = _render.createElement("img");
     img.setAttribute("src", "../../../../../assets/delete .png");
     img.SetAttribute("style", "cursor:pointer;");
@@ -29,45 +30,37 @@ export class DeleteDirective {
 
   @HostListener("click")
   async onclick() {
-    this.openDialog(async () => {
-      this.spinner.show(SpinnerType.BitsBall);
-      const td: HTMLTableCellElement = this.elementRef.nativeElement;
-      this.httpClientService.delete({
-        controller: this.controller
-      }, this.id).subscribe(data => {
-        $(td.parentElement).animate({
-          opacity: 0,
-          left: "+=50",
-          height: "toogle"
-        }, 700, () => {
-          this.callback.emit();
-          this.alertifyService.message("Fatura başarıyla silinmiştir.", {
+    this.dialogService.openDialog({
+      componentType: DeleteDialogComponent,
+      data: DeleteState.Yes,
+      afterClosed: async () => {
+        this.spinner.show(SpinnerType.BitsBall);
+        const td: HTMLTableCellElement = this.elementRef.nativeElement;
+        this.httpClientService.delete({
+          controller: this.controller
+        }, this.id).subscribe(data => {
+          $(td.parentElement).animate({
+            opacity: 0,
+            left: "+=50",
+            height: "toogle"
+          }, 700, () => {
+            this.callback.emit();
+            this.alertifyService.message("Fatura başarıyla silinmiştir.", {
+              dismissOthers: true,
+              messageType: MessageType.Success,
+              position: Position.TopRight
+            })
+          });
+        }, (errorResponse: HttpErrorResponse) => {
+          this.spinner.hide(SpinnerType.BitsBall);
+          this.alertifyService.message("Fatura silinirken beklenmeyen bir hatayla karşılaşılmıştır.", {
             dismissOthers: true,
-            messageType: MessageType.Success,
+            messageType: MessageType.Error,
             position: Position.TopRight
-          })
+          });
         });
-      }, (errorResponse: HttpErrorResponse) => {
-        this.spinner.hide(SpinnerType.BitsBall);
-        this.alertifyService.message("Fatura silinirken beklenmeyen bir hatayla karşılaşılmıştır.", {
-          dismissOthers: true,
-          messageType: MessageType.Error,
-          position: Position.TopRight
-        });
-      });
+      }
     });
   }
-  openDialog(afterClosed: any): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '250px',
-      data: DeleteState.Yes,
-    })
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == DeleteState.Yes)
-        afterClosed();
-    });
-}
-
 }
 

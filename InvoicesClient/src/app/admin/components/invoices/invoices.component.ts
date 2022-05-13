@@ -26,6 +26,4 @@ export class InvoicesComponent extends BaseComponent implements OnInit {
       controller: "invoices"
     }).subscribe(data => console.log(data));
   }
-
-
 }

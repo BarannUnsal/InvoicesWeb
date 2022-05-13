@@ -18,12 +18,6 @@
     <input matInput #txtInvoiceType>
 </mat-form-field>
 
-<mat-form-field appearance="fill">
-    <mat-label>Choose expiration date</mat-label>>
-    <input matInput #txtExpiration>
-    <mat-hint>MM/DD/YYYY</mat-hint>
-  </mat-form-field>
-
  <mat-radio-group labelPosition="before" aria-label="Select an option" class="radio-group">
     <label class="label_title">Fatura Durumu</label>
     <mat-radio-button value="true">Ödenmiş</mat-radio-button>
@@ -32,6 +26,6 @@
   </mat-radio-group> 
 
 <button mat-raised-button color="accent" class="button"
-    (click)="create(txtTitle, txtInvoiceNumber, txtDescription, txtInvoiceType, txtExpiration, txtisActive)">Create Invoice</button>
+    (click)="create(txtTitle, txtInvoiceNumber, txtDescription, txtInvoiceType, txtisActive)">Create Invoice</button>
 
     <app-file-upload [options]="fileUploadOptions"></app-file-upload>

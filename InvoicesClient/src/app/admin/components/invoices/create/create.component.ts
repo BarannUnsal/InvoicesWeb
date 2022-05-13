@@ -27,11 +27,10 @@ export class CreateComponent extends BaseComponent implements OnInit {
     accept: ".png, .jpg, .jpeg"
   };
 
-  create(title: HTMLInputElement, invoiceNumber: HTMLInputElement, invoiceType: HTMLInputElement, expiration: HTMLInputElement, description: HTMLInputElement, isActive: HTMLInputElement) {
+  create(title: HTMLInputElement, invoiceNumber: HTMLInputElement, invoiceType: HTMLInputElement, description: HTMLInputElement, isActive: HTMLInputElement) {
     this.showSpinner(SpinnerType.BitsBall);
     const create_invoice: CreateInvoice = new CreateInvoice();
     create_invoice.description = description.value;
-    create_invoice.expiration = expiration.value;
     create_invoice.title = title.value;
     create_invoice.invoiceType = invoiceType.value;
     create_invoice.invoiceNumber = parseInt(invoiceNumber.value);

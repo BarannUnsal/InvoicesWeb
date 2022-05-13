@@ -17,7 +17,7 @@ declare var $: any;
 export class ListComponent extends BaseComponent implements OnInit {
   constructor(private invoiceService: InvoiceService, spinner: NgxSpinnerService, private alertify: AlertifyService) { super(spinner) }
 
-  displayedColumns: string[] = ['invoiceNumber', 'title', 'description', 'invoiceType', "isActive", "createdTime", "updatedTime", "edit", "delete"];
+  displayedColumns: string[] = ['title', 'invoiceNumber', 'description', 'invoiceType', "isActive", "createdTime", "updatedTime", "edit", "delete"];
   dataSource: MatTableDataSource<ListInvoice> = null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -32,7 +32,6 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.dataSource = new MatTableDataSource<ListInvoice>(allInvoices.invoice);
     this.paginator.length = allInvoices.totalCount;
   }
-
 
   async pageChanged() {
     await this.getInvoices();
