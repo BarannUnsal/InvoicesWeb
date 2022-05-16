@@ -1,12 +1,10 @@
 ﻿using InvoicesAPI.Api.Models.Invoice;
+using InvoicesAPI.Business.Abstract;
 using InvoicesAPI.DataAccess.Abstract.Repository.InvoicesRepo;
 using InvoicesAPI.DataAccess.RequestParameters;
 using InvoicesAPI.Entity;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -20,11 +18,13 @@ namespace InvoicesAPI.Api.Controllers
         private readonly IInvoicesReadRepository _readRepository;
         private readonly IInvociesWriteRepository _writeRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public InvoiceController(IInvoicesReadRepository readRepository, IInvociesWriteRepository writeRepository, IWebHostEnvironment webHostEnvironment)
+        private readonly IFileService _fileService;
+        public InvoiceController(IInvoicesReadRepository readRepository, IInvociesWriteRepository writeRepository, IWebHostEnvironment webHostEnvironment, IFileService fileService)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;
             _webHostEnvironment = webHostEnvironment;
+            _fileService = fileService;
         }
 
         [HttpGet]
@@ -64,7 +64,6 @@ namespace InvoicesAPI.Api.Controllers
                 InvoiceType = model.InvoiceType,
                 Title = model.Title,
                 Description = model.Description,
-                IsActive = model.isActive
             });
             await _writeRepository.SaveAsync();
             return StatusCode((int)HttpStatusCode.Created);
@@ -74,7 +73,6 @@ namespace InvoicesAPI.Api.Controllers
         public async Task<IActionResult> UpdateInvoice(VM_Invoice_Update model)
         {
             Invoice invoice = await _readRepository.GetByIdAsync(model.Id);
-            invoice.IsActive = model.isActive;
             invoice.InvoiceNumber = model.InvoiceNumber;
             invoice.InvoiceType = model.InvoiceType;
             invoice.Title = model.Title;
@@ -94,22 +92,7 @@ namespace InvoicesAPI.Api.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Upload()
         {
-            //wwwroot/resource/invoices-images
-            string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/invoices-images");
-
-            if (!Directory.Exists(uploadPath))
-                Directory.CreateDirectory(uploadPath);
-            
-            Random r = new();
-
-            foreach(IFormFile file in Request.Form.Files)
-            {
-                string fullPath = Path.Combine(uploadPath, $"{r.Next()}{Path.GetExtension(file.FileName)}");
-
-                using FileStream fileStream = new(fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
-                await file.CopyToAsync(fileStream);
-                await fileStream.FlushAsync();
-            }
+            await _fileService.UploadAsync("resource/invoices-images", Request.Form.Files);
             return Ok();
         }
     }
