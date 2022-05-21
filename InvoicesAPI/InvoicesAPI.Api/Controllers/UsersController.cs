@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace InvoicesAPI.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]s")]
-    public class UserController : ControllerBase
+    [Route("api/[controller]")]
+    public class UsersController : ControllerBase
     {
         private readonly IUserReadRepository _userRead;
         private readonly IUserWriteRepository _userWrite;
 
-        public UserController(IUserReadRepository userRead, IUserWriteRepository userWrite)
+        public UsersController(IUserReadRepository userRead, IUserWriteRepository userWrite)
         {
             _userRead = userRead;
             _userWrite = userWrite;

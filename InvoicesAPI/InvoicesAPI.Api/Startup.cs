@@ -1,6 +1,7 @@
-using InvoicesAPI.Business.Abstract;
-using InvoicesAPI.Business.Concrete;
+using InvoicesAPI.Business.Abstraction;
 using InvoicesAPI.Business.Filter;
+using InvoicesAPI.Business.Services.Storage;
+using InvoicesAPI.Business.Services.Storage.Azure;
 using InvoicesAPI.DataAccess.Abstract.Repository.CreditCardRepo;
 using InvoicesAPI.DataAccess.Abstract.Repository.HouseRepo;
 using InvoicesAPI.DataAccess.Abstract.Repository.InvoicesRepo;
@@ -49,7 +50,8 @@ namespace InvoicesAPI.Api
             services.AddScoped<IInvociesWriteRepository, InvoiceWriteRepository>();
             services.AddScoped<IUserReadRepository, UserReadRepository>();
             services.AddScoped<IUserWriteRepository, UserWriteRepository>();
-            services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IStorageService, StorageService>();
+            services.AddScoped<IStorage, AzuraStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

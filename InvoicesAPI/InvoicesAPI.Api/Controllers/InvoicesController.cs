@@ -1,30 +1,34 @@
 ﻿using InvoicesAPI.Api.Models.Invoice;
-using InvoicesAPI.Business.Abstract;
+using InvoicesAPI.Business.Abstraction;
+using InvoicesAPI.DataAccess.Abstract.Repository.FileRepo;
+using InvoicesAPI.DataAccess.Abstract.Repository.InvoiceFileRepo;
 using InvoicesAPI.DataAccess.Abstract.Repository.InvoicesRepo;
+using InvoicesAPI.DataAccess.Concrete.Repository.InvoiceFileRepo;
 using InvoicesAPI.DataAccess.RequestParameters;
 using InvoicesAPI.Entity;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace InvoicesAPI.Api.Controllers
 {
-    [Route("api/[controller]s")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class InvoiceController : ControllerBase
+    public class InvoicesController : ControllerBase
     {
         private readonly IInvoicesReadRepository _readRepository;
         private readonly IInvociesWriteRepository _writeRepository;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly IFileService _fileService;
-        public InvoiceController(IInvoicesReadRepository readRepository, IInvociesWriteRepository writeRepository, IWebHostEnvironment webHostEnvironment, IFileService fileService)
+        readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
+        readonly IStorageService _storageService;
+
+        public InvoicesController(IInvoicesReadRepository readRepository, IInvociesWriteRepository writeRepository, IInvoiceFileWriteRepository invoiceFileWriteRepository, IStorageService storageService)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;
-            _webHostEnvironment = webHostEnvironment;
-            _fileService = fileService;
+            _invoiceFileWriteRepository = invoiceFileWriteRepository;
+            _storageService = storageService;
         }
 
         [HttpGet]
@@ -46,7 +50,7 @@ namespace InvoicesAPI.Api.Controllers
             {
                 totalCount,
                 invoices
-            }); 
+            });
         }
 
         [HttpGet("{id}")]
@@ -92,7 +96,16 @@ namespace InvoicesAPI.Api.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Upload()
         {
-            await _fileService.UploadAsync("resource/invoices-images", Request.Form.Files);
+            var datas = await _storageService.UploadAsync("files", Request.Form.Files);
+
+            await _invoiceFileWriteRepository.AddRangeAsync(datas.Select(e => new InvoiceFile()
+            {
+                FileName = e.fileName,
+                Path = e.pathOrContainerName,
+                Storage = _storageService.StorageName,
+                Price = new Random().Next()
+            }).ToList());
+            await _invoiceFileWriteRepository.SaveAsync();
             return Ok();
         }
     }

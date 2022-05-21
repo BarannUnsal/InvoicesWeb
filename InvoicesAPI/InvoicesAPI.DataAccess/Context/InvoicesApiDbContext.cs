@@ -17,6 +17,8 @@ namespace InvoicesAPI.DataAccess.Context
         DbSet<Invoice> Invoices { get; set;}
         DbSet<House> Houses { get; set; }
         DbSet<CreditCard> CreditCards { get; set; }
+        DbSet<File> Files { get; set; }
+        DbSet<InvoiceFile> InvoiceFiles { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

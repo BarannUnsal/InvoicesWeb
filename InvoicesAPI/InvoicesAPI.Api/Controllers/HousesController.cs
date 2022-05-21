@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace InvoicesAPI.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]s")]
-    public class HouseController : ControllerBase
+    [Route("api/[controller]")]
+    public class HousesController : ControllerBase
     {
         private readonly IHouseReadRepository _readRepository;
         private readonly IHouseWriteRepository _writeRepository;
-        public HouseController(IHouseReadRepository readRepository, IHouseWriteRepository writeRepository)
+        public HousesController(IHouseReadRepository readRepository, IHouseWriteRepository writeRepository)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;

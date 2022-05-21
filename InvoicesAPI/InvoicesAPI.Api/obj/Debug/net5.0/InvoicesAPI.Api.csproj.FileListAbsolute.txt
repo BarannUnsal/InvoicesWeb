@@ -55,3 +55,9 @@ D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\Fluent
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\InvoicesAPI.Business.dll
 D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\InvoicesAPI.Business.pdb
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\Azure.Core.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\Azure.Storage.Blobs.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\Azure.Storage.Common.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\System.IO.Hashing.dll
+D:\USERDATA\Desktop\Invoices\InvoicesAPI\InvoicesAPI.Api\bin\Debug\net5.0\System.Memory.Data.dll

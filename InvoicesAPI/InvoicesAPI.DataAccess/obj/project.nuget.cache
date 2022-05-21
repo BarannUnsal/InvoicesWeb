@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sbyBtpxGSTNfOYoKGKoR8dNUkl3TlfAFHZnXKt5AfRW4a2EXZrwBq9gIxinUkGAnHeoWP5xgGUxw1Vd1lLsxAg==",
+  "dgSpecHash": "jJCpOyrLnCCovo0eidwbVyYW+k9gg0g5v9c5tOJXhQ/uRjnOdvgvqUbZY4VnpapKy3X1FdsL8aoBbqZfnnGMqg==",
   "success": true,
   "projectFilePath": "D:\\USERDATA\\Desktop\\Invoices\\InvoicesAPI\\InvoicesAPI.DataAccess\\InvoicesAPI.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -29,8 +29,8 @@
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
-    "C:\\Users\\SIA-OF1\\.nuget\\packages\\npgsql\\5.0.10\\npgsql.5.0.10.nupkg.sha512",
-    "C:\\Users\\SIA-OF1\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.10\\npgsql.entityframeworkcore.postgresql.5.0.10.nupkg.sha512",
+    "C:\\Users\\SIA-OF1\\.nuget\\packages\\npgsql\\5.0.0\\npgsql.5.0.0.nupkg.sha512",
+    "C:\\Users\\SIA-OF1\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.0\\npgsql.entityframeworkcore.postgresql.5.0.0.nupkg.sha512",
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\SIA-OF1\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",

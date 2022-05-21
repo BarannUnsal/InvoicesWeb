@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace InvoicesAPI.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]s")]
-    public class CreditCardController : ControllerBase
+    [Route("api/[controller]")]
+    public class CreditCardsController : ControllerBase
     {
         private readonly ICreditCardReadRepository _readRepository;
         private readonly ICreditCardWriteRepository _writeRepository;
-        public CreditCardController(ICreditCardReadRepository readRepository, ICreditCardWriteRepository writeRepository)
+        public CreditCardsController(ICreditCardReadRepository readRepository, ICreditCardWriteRepository writeRepository)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;

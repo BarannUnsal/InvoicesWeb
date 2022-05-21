@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InvoicesAPI.DataAccess.Migrations
 {
     [DbContext(typeof(InvoicesApiDbContext))]
-    [Migration("20220509215433_mig_1")]
+    [Migration("20220521142045_mig_1")]
     partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,35 @@ namespace InvoicesAPI.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CreditCards");
+                });
+
+            modelBuilder.Entity("InvoicesAPI.Entity.File", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Storage")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Files");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("File");
                 });
 
             modelBuilder.Entity("InvoicesAPI.Entity.House", b =>
@@ -100,9 +129,6 @@ namespace InvoicesAPI.DataAccess.Migrations
                     b.Property<string>("InvoiceType")
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
@@ -147,6 +173,16 @@ namespace InvoicesAPI.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("InvoicesAPI.Entity.InvoiceFile", b =>
+                {
+                    b.HasBaseType("InvoicesAPI.Entity.File");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.HasDiscriminator().HasValue("InvoiceFile");
                 });
 #pragma warning restore 612, 618
         }
