@@ -29,7 +29,7 @@ namespace InvoicesAPI.Business.Features.Queries.Invoice.GetAllInvoice
 
             return new()
             {
-                Products = totalCount,
+                Invoices = invoices,
                 TotalCount = totalCount
             };
         }

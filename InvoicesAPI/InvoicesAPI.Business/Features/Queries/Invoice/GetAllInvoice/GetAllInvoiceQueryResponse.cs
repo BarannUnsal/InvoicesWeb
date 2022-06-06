@@ -9,6 +9,6 @@ namespace InvoicesAPI.Business.Features.Queries.Invoice.GetAllInvoice
     public class GetAllInvoiceQueryResponse
     {
         public int TotalCount { get; set; }
-        public object Products { get; set; } 
+        public object Invoices { get; set; } 
     }
 }
