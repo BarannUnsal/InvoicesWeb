@@ -1,5 +1,4 @@
 ﻿using InvoicesAPI.Entity.Common;
-using System;
 
 namespace InvoicesAPI.Entity
 {

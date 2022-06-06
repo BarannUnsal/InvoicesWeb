@@ -1,6 +1,9 @@
-﻿using InvoicesAPI.Api.Models.CreditCard;
-using InvoicesAPI.DataAccess.Abstract.Repository.CreditCardRepo;
-using InvoicesAPI.Entity;
+﻿using InvoicesAPI.Business.Features.Command.CreditCard.CreateCreditCard;
+using InvoicesAPI.Business.Features.Command.CreditCard.RemoveCreditCard;
+using InvoicesAPI.Business.Features.Command.CreditCard.UpdateCreditCard;
+using InvoicesAPI.Business.Features.Queries.CreditCard.GetByIdCreditCard;
+using InvoicesAPI.Business.Features.Queries.CreditCard.GetCreditCard;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -10,60 +13,45 @@ namespace InvoicesAPI.Api.Controllers
     [Route("api/[controller]")]
     public class CreditCardsController : ControllerBase
     {
-        private readonly ICreditCardReadRepository _readRepository;
-        private readonly ICreditCardWriteRepository _writeRepository;
-        public CreditCardsController(ICreditCardReadRepository readRepository, ICreditCardWriteRepository writeRepository)
+        readonly IMediator _mediator;
+        public CreditCardsController(IMediator mediator)
         {
-            _readRepository = readRepository;
-            _writeRepository = writeRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCreditCard()
+        public async Task<IActionResult> GetCreditCard([FromQuery] GetCreditCardQueryRequest request)
         {
-            return Ok(_readRepository.GetAll(false));
+            GetCreditCardQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdCreditCard(string id)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetByIdCreditCard([FromBody] GetByIdCreditCardQueryRequest request)
         {
-            return Ok(await _readRepository.GetByIdAsync(id));
+            GetByIdCreditCardQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCreditCard(VM_CreditCard_Create model)
+        public async Task<IActionResult> CreateCreditCard(CreateCreditCardCommandRequest request)
         {
-            await _writeRepository.AddAsync(new()
-            {
-                CardNo = model.CardNo,
-                Description =model.Description,
-                Title = model.Title,
-                SecurityNumber = model.SecurityNumber,
-                Expiration = model.Expiration
-            });
-            await _writeRepository.SaveAsync();
-            return Ok();
+            CreateCreditCardCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCreditCard(VM_CreditCard_Update model)
+        public async Task<IActionResult> UpdateCreditCard([FromBody] UpdateCreditCardCommandRequest request)
         {
-            CreditCard creditCard = await _readRepository.GetByIdAsync(model.Id);
-            creditCard.Description = model.Description;
-            creditCard.Title = model.Title;
-            creditCard.CardNo = model.CardNo;
-            creditCard.SecurityNumber = model.SecurityNumber;
-            creditCard.Expiration = model.Expiration;
-            await _writeRepository.SaveAsync();
-            return Ok();
+            UpdateCreditCardCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteCreditCard(string id)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteCreditCard([FromRoute] RemoveCreditCardCommandRequest request)
         {
-            await _writeRepository.RemoveAsync(id);
-            await _writeRepository.SaveAsync();
-            return Ok();
+            RemoveCreditCardCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }

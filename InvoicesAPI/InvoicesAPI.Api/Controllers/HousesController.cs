@@ -1,6 +1,9 @@
-﻿using InvoicesAPI.Api.Models.House;
-using InvoicesAPI.DataAccess.Abstract.Repository.HouseRepo;
-using InvoicesAPI.Entity;
+﻿using InvoicesAPI.Business.Features.Command.House.CreateHouse;
+using InvoicesAPI.Business.Features.Command.House.RemoveHouse;
+using InvoicesAPI.Business.Features.Command.House.UpdateHouse;
+using InvoicesAPI.Business.Features.Queries.House.GetByIdHouse;
+using InvoicesAPI.Business.Features.Queries.House.GetHouse;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -10,58 +13,45 @@ namespace InvoicesAPI.Api.Controllers
     [Route("api/[controller]")]
     public class HousesController : ControllerBase
     {
-        private readonly IHouseReadRepository _readRepository;
-        private readonly IHouseWriteRepository _writeRepository;
-        public HousesController(IHouseReadRepository readRepository, IHouseWriteRepository writeRepository)
+        readonly IMediator _mediator;
+        public HousesController(IMediator mediator)
         {
-            _readRepository = readRepository;
-            _writeRepository = writeRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetHouse()
+        public async Task<IActionResult> GetHouse([FromQuery] GetHouseQueryRequest request)
         {
-            return Ok(_readRepository.GetAll(false));
+            GetHouseQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdHouse(string id)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetByIdHouse([FromBody] GetByIdHouseQueryRequest request)
         {
-            return Ok(await _readRepository.GetByIdAsync(id));
+            GetByIdHouseQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateHouse(VM_House_Create model)
+        public async Task<IActionResult> CreateHouse(CreateHouseCommandRequest request)
         {
-            await _writeRepository.AddAsync(new()
-            {
-                AptNo = model.AptNo,
-                Block = model.Block,
-                Type = model.Type,
-                isEmpty = model.isEmpty
-            });
-            await _writeRepository.SaveAsync();
-            return Ok();
+            CreateHouseCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateHouse(VM_House_Update model)
+        public async Task<IActionResult> UpdateHouse([FromBody] UpdateHouseCommandRequest request)
         {
-            House house = await _readRepository.GetByIdAsync(model.Id);
-            house.Type = model.Type;
-            house.Block = model.Block;
-            house.AptNo = model.AptNo;
-            house.isEmpty = model.isEmpty;
-            await _writeRepository.SaveAsync();
-            return Ok();
+            UpdateHouseCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteHouse(string id)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteHouse([FromRoute] RemoveHouseCommandRequest request)
         {
-            await _writeRepository.RemoveAsync(id);
-            await _writeRepository.SaveAsync();
-            return Ok();
+            RemoveHouseCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }

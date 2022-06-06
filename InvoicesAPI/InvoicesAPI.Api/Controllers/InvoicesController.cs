@@ -1,15 +1,14 @@
-﻿using InvoicesAPI.Api.Models.Invoice;
-using InvoicesAPI.Business.Abstraction;
-using InvoicesAPI.DataAccess.Abstract.Repository.FileRepo;
-using InvoicesAPI.DataAccess.Abstract.Repository.InvoiceFileRepo;
-using InvoicesAPI.DataAccess.Abstract.Repository.InvoicesRepo;
-using InvoicesAPI.DataAccess.Concrete.Repository.InvoiceFileRepo;
-using InvoicesAPI.DataAccess.RequestParameters;
-using InvoicesAPI.Entity;
+﻿using InvoicesAPI.Business.Features.Command.Invoice.CreateInvoice;
+using InvoicesAPI.Business.Features.Command.Invoice.RemoveInvoice;
+using InvoicesAPI.Business.Features.Command.Invoice.UpdateInvoice;
+using InvoicesAPI.Business.Features.Command.InvoiceImageFile.RemoveInvoiceImage;
+using InvoicesAPI.Business.Features.Command.InvoiceImageFile.UploadInvoiceImage;
+using InvoicesAPI.Business.Features.Queries.Invoice.GetAllInvoice;
+using InvoicesAPI.Business.Features.Queries.Invoice.GetByIdInvoice;
+using InvoicesAPI.Business.Features.Queries.InvoiceImageFile.GetInvoiceImage;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
-using System.Net;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InvoicesAPI.Api.Controllers
@@ -18,95 +17,68 @@ namespace InvoicesAPI.Api.Controllers
     [ApiController]
     public class InvoicesController : ControllerBase
     {
-        private readonly IInvoicesReadRepository _readRepository;
-        private readonly IInvociesWriteRepository _writeRepository;
-        readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
-        readonly IStorageService _storageService;
+        readonly IMediator _mediator;
 
-        public InvoicesController(IInvoicesReadRepository readRepository, IInvociesWriteRepository writeRepository, IInvoiceFileWriteRepository invoiceFileWriteRepository, IStorageService storageService)
+        public InvoicesController(IMediator mediator)
         {
-            _readRepository = readRepository;
-            _writeRepository = writeRepository;
-            _invoiceFileWriteRepository = invoiceFileWriteRepository;
-            _storageService = storageService;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] Pagination pagination)
+        public async Task<IActionResult> Get([FromQuery] GetAllInvoiceQueryRequest request)
         {
-            var totalCount = _readRepository.GetAll(false).Count();
-            var invoices = _readRepository.GetAll(false).Skip(pagination.Page * pagination.Size).Take(pagination.Size).Select(p => new
-            {
-                p.Id,
-                p.Title,
-                p.Description,
-                p.CreatedTime,
-                p.UpdatedTime,
-                p.InvoiceType,
-                p.InvoiceNumber
-            }).ToList();
-
-            return Ok(new
-            {
-                totalCount,
-                invoices
-            });
+            GetAllInvoiceQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdInvoice(string id)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetByIdInvoice([FromBody] GetByIdInvoiceQueryRequest request)
         {
-            return Ok(await _readRepository.GetByIdAsync(id));
+            GetByIdInvoiceQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateInvoice(VM_Invioce_Create model)
+        public async Task<IActionResult> CreateInvoice(CreateInvoiceCommandRequest request)
         {
-            await _writeRepository.AddAsync(new()
-            {
-                InvoiceNumber = model.InvoiceNumber,
-                InvoiceType = model.InvoiceType,
-                Title = model.Title,
-                Description = model.Description,
-            });
-            await _writeRepository.SaveAsync();
-            return StatusCode((int)HttpStatusCode.Created);
+            CreateInvoiceCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateInvoice(VM_Invoice_Update model)
+        public async Task<IActionResult> UpdateInvoice([FromBody] UpdateInvoiceCommandRequest request)
         {
-            Invoice invoice = await _readRepository.GetByIdAsync(model.Id);
-            invoice.InvoiceNumber = model.InvoiceNumber;
-            invoice.InvoiceType = model.InvoiceType;
-            invoice.Title = model.Title;
-            invoice.Description = model.Description;
-            await _writeRepository.SaveAsync();
-            return Ok();
+            UpdateInvoiceCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteInvoice(string id)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteInvoice([FromRoute] RemoveInvoiceCommandRequest request)
         {
-            await _writeRepository.RemoveAsync(id);
-            await _writeRepository.SaveAsync();
-            return Ok();
+            RemoveInvoiceCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Upload()
+        public async Task<IActionResult> Upload([FromQuery] UploadInvoiceImageCommandRequest request)
         {
-            var datas = await _storageService.UploadAsync("files", Request.Form.Files);
+            UploadInvoiceImageCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
+        }
 
-            await _invoiceFileWriteRepository.AddRangeAsync(datas.Select(e => new InvoiceFile()
-            {
-                FileName = e.fileName,
-                Path = e.pathOrContainerName,
-                Storage = _storageService.StorageName,
-                Price = new Random().Next()
-            }).ToList());
-            await _invoiceFileWriteRepository.SaveAsync();
-            return Ok();
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetInvoiceImage([FromRoute] GetInvoiceImageQueryRequest request)
+        {
+            List<GetInvoiceImageQueryResponse> response = await _mediator.Send(request);
+            return Ok(response);
+        }
+
+        [HttpDelete("(action)/{id}")]
+        public async Task<IActionResult> DeleteInvoiceImage([FromRoute] RemoveInvoiceImageCommandRequest request, string imageId)
+        {
+            request.ImageId = imageId;
+            RemoveInvoiceImageCommandResponse response = await _mediator.Send(request);   
+            return Ok(response);
         }
     }
 }
