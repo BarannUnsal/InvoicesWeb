@@ -9,7 +9,7 @@ What I've used so far:
 - Generic Repository Pattern
 - CQRS Pattern
 - Entity FrameWork Core
-- I pay attention to the principles of SOLID
+- SOLID
 - Microsoft Azure Service
 - JWT Bearer
 
