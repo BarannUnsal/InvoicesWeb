@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices Web</title>
+    <link rel="stylesheet" href="/bootstrap v5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+    <header class="p-3 bg-success text-white">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="./home.html" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none me-4">
+              Invoices Web
+            </a>
+    
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="./home.html" class="nav-link px-2 text-white">Ana Sayfa</a></li>
+              <li><a href="./dashboard.html" class="nav-link px-2 text-white">Gösterge Paneli</a></li>
+            </ul>
+    
+            <div class="text-end">
+              <button type="button" class="btn btn-dark bg-gradient me-2">
+                  <a href="./login.html" class="text-decoration-none text-white">Üye Ol</a>
+              </button>              
+              <button type="button" class="btn btn-dark bg-gradient me-2">
+                  <a href="./signUp.html" class="text-decoration-none text-white">Giriş Yap</a>
+              </button>              
+            </div>
+          </div>
+        </div>
+      </header>
+
+      
+
+      <div class="row">
+          <div class="col-md-8 offset-2 mt-3">
+            <form class="row g-3">                
+                    <div class="col-md-6">
+                      <label for="isim" class="form-label">İsim</label>
+                      <input type="text" class="form-control" id="isim" aria-describedby="isimHelp" placeholder="İsim">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="soyad" class="form-label">Soyad</label>
+                      <input type="text" class="form-control" id="soyad" placeholder="Soyisim">
+                    </div>                
+                    <div class="col-md-6">
+                        <label for="kullaniciAdi" class="form-label">Kullanıcı Adı</label>
+                        <input type="text" class="form-control" placeholder="Kullanıcı Adı" id="kullaniciAdi" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>              
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="inputEmail4">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputPassword4" class="form-label">Şifre</label>
+                  <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputPassword4" class="form-label">Şifre Tekrarı</label>
+                  <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">Adres</label>
+                  <input type="text" class="form-control" id="inputAddress" placeholder="123 Ahmet Sokak">
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress2" class="form-label">Adres 2</label>
+                  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartman ">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputCity" class="form-label">Blok</label>
+                  <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputState" class="form-label">Kat</label>
+                  <input id="inputState" class="form-control">
+                  </input>
+                </div>
+                <div class="col-md-4">
+                  <label for="inputZip" class="form-label">Daire No</label>
+                  <input type="text" class="form-control" id="inputZip">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">Şehir</label>
+                    <input type="text" name="inputCity" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputIlce" class="form-label">İlçe</label>
+                    <input type="text" name="inputIlce" class="form-control">
+                </div>
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Sözleşmeyi Okudum
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn bg-gradient bg-dark text-white">Gönder</button>
+                </div>
+              </form>            
+          </div>
+      </div>
+
+    <script src="../bootstrap v5.0/js/bootstrap.min.js"></script>
+    <script src="../bootstrap v5.0//js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
