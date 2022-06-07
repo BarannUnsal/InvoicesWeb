@@ -2,7 +2,7 @@
 
 namespace InvoicesAPI.DataAccess.Abstract.Repository.UserRepo
 {
-    public interface IUserWriteRepository : IWriteRepository<User>
+    public interface IHomeownerWriteRepository : IWriteRepository<Homeowner>
     {
     }
 }

@@ -1,3 +1,4 @@
+using InvoicesAPI.Business;
 using InvoicesAPI.Business.Abstraction;
 using InvoicesAPI.Business.Filter;
 using InvoicesAPI.Business.Services.Storage;
@@ -11,6 +12,7 @@ using InvoicesAPI.DataAccess.Concrete.Repository.HouseRepo;
 using InvoicesAPI.DataAccess.Concrete.Repository.InvoiceRepo;
 using InvoicesAPI.DataAccess.Concrete.Repository.UserRepo;
 using InvoicesAPI.DataAccess.Context;
+using InvoicesAPI.Entity.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -42,16 +44,8 @@ namespace InvoicesAPI.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InvoicesAPI.Api", Version = "v1" });
             });
             services.AddDbContext<InvoicesApiDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<ICreditCardReadRepository, CreditCardReadRepository>();
-            services.AddScoped<ICreditCardWriteRepository, CreditCartWriteRepository>();
-            services.AddScoped<IHouseReadRepository, HouseReadRepository>();
-            services.AddScoped<IHouseWriteRepository, HouseWriteRepository>();
-            services.AddScoped<IInvoicesReadRepository, InvoiceReadRepository>();
-            services.AddScoped<IInvociesWriteRepository, InvoiceWriteRepository>();
-            services.AddScoped<IUserReadRepository, UserReadRepository>();
-            services.AddScoped<IUserWriteRepository, UserWriteRepository>();
-            services.AddScoped<IStorageService, StorageService>();
-            services.AddScoped<IStorage, AzuraStorage>();
+            services.DataBaseServices();
+            services.BusinessServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

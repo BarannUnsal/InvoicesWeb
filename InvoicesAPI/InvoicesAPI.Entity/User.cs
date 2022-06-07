@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace InvoicesAPI.Entity
 {
-    public class User : BaseEntity
+    public class Homeowner : BaseEntity
     {
         public string Name { get; set; }
         public string Surname { get; set; }

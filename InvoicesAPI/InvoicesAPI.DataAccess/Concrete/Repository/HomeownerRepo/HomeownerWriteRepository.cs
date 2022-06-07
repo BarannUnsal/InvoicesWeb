@@ -4,9 +4,9 @@ using InvoicesAPI.Entity;
 
 namespace InvoicesAPI.DataAccess.Concrete.Repository.UserRepo
 {
-    public class UserWriteRepository : WriteRepository<User>, IUserWriteRepository
+    public class HomeownerWriteRepository : WriteRepository<Homeowner>, IHomeownerWriteRepository
     {
-        public UserWriteRepository(InvoicesApiDbContext context) : base(context)
+        public HomeownerWriteRepository(InvoicesApiDbContext context) : base(context)
         {
         }
     }
