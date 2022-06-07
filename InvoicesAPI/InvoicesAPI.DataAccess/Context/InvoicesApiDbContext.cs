@@ -1,5 +1,7 @@
 ﻿using InvoicesAPI.Entity;
 using InvoicesAPI.Entity.Common;
+using InvoicesAPI.Entity.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
@@ -7,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace InvoicesAPI.DataAccess.Context
 {
-    public class InvoicesApiDbContext : DbContext
+    public class InvoicesApiDbContext : IdentityDbContext<AppUser, AppRole, string>
     {
         public InvoicesApiDbContext(DbContextOptions<InvoicesApiDbContext> options) : base(options)
         {
 
         }
-        DbSet<User> Users { get; set; }
+        DbSet<Homeowner> Homeowners{ get; set; }
         DbSet<Invoice> Invoices { get; set;}
         DbSet<House> Houses { get; set; }
         DbSet<CreditCard> CreditCards { get; set; }

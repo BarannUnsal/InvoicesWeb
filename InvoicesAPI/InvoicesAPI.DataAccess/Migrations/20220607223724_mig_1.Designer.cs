@@ -3,15 +3,17 @@ using System;
 using InvoicesAPI.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace InvoicesAPI.DataAccess.Migrations
 {
     [DbContext(typeof(InvoicesApiDbContext))]
-    partial class InvoicesApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220607223724_mig_1")]
+    partial class mig_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
