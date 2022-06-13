@@ -12,5 +12,6 @@ What I've used so far:
 - SOLID
 - Microsoft Azure Service
 - JWT Bearer
+- OOP
 
 This project, which I am doing to improve myself, is the systems I is a work I do to integrate design patterns and reinforce my learning process.
