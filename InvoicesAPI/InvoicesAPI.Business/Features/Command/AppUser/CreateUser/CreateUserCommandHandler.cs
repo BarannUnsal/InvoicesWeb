@@ -29,10 +29,16 @@ namespace InvoicesAPI.Business.Features.Command.AppUser.CreateUser
             CreateUserCommandResponse response = new() { Succeeded = true };
 
             if (result.Succeeded)
+            {
                 response.Message = "Kullanıcı başarılı bir şekilde oluşturuldu!";
+            }
             else
+            {
                 foreach (var error in result.Errors)
+                {
                     response.Message = "Hata! Kullanıcı oluşturulurken bir hata ile karşılaşıldı!";
+                }
+            }
 
             return response;
         }

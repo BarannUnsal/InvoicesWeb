@@ -13,13 +13,16 @@ using InvoicesAPI.DataAccess.Concrete.Repository.InvoiceRepo;
 using InvoicesAPI.DataAccess.Concrete.Repository.UserRepo;
 using InvoicesAPI.DataAccess.Context;
 using InvoicesAPI.Entity.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace InvoicesAPI.Api
 {
@@ -46,6 +49,18 @@ namespace InvoicesAPI.Api
             services.AddDbContext<InvoicesApiDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.DataBaseServices();
             services.BusinessServices();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => options.TokenValidationParameters = new()
+                {
+                    ValidateAudience = true, // Oluþturulacak token deðerini kimlerin/server kullanacaðýný belirleme
+                    ValidateIssuer = true, //Token deðerini kimin daðýttýðý
+                    ValidateLifetime = true, // yaþam süresi
+                    ValidateIssuerSigningKey = true, // security key
+
+                    ValidAudience = Configuration["Token:Audience"],
+                    ValidIssuer = Configuration["Token:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:SecurityKey"]))
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +79,7 @@ namespace InvoicesAPI.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
